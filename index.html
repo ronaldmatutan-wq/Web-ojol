@@ -4,10 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OjolKita - Ojek Online Andal</title>
-    <script src="https://jsdelivr.net"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        
+        .chat-bubble-enter {
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chat-container-open {
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .ai-button-bounce:hover {
+            animation: bounce 0.6s ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <span class="text-2xl font-bold text-emerald-600">Ojol<span class="text-slate-800">Kita</span></span>
             <div class="space-x-4">
@@ -16,17 +56,206 @@
             </div>
         </div>
     </nav>
+
     <header class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
         <div>
             <h1 class="text-4xl font-extrabold mb-4 leading-tight">Perjalanan Aman, <br><span class="text-emerald-600">Tarif Pas di Kantong</span></h1>
             <p class="text-slate-600 text-lg mb-8">Layanan ojek online terpercaya untuk mengantar Anda sampai tujuan dengan selamat, cepat, dan nyaman.</p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="https://wa.me?text=Halo%20Ojol,%20saya%20mau%20pesan%20ojek" class="bg-emerald-600 text-white text-center font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-emerald-700 transition">Pesan Ojek Via WA</a>
+                <a href="https://wa.me?text=Halo%20Ojol,%20saya%20mau%20pesan%20ojek" class="bg-emerald-600 text-white text-center font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-emerald-700 transition">Pesan Sekarang</a>
+                <a href="#daftar" class="border-2 border-emerald-600 text-emerald-600 text-center font-semibold px-6 py-3 rounded-xl hover:bg-emerald-50 transition">Daftar Jadi Driver</a>
             </div>
         </div>
         <div class="bg-emerald-100 h-64 rounded-2xl flex items-center justify-center shadow-inner">
             <span class="text-emerald-600 font-medium">[ Area Ilustrasi / Peta ]</span>
         </div>
     </header>
+
+    <!-- Formulir Pendaftaran Driver -->
+    <section id="daftar" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="bg-gradient-to-b from-emerald-50 to-emerald-100 rounded-2xl p-8 border-t-4 border-emerald-600">
+            <h2 class="text-3xl font-bold text-emerald-900 mb-8">📝 Daftar Menjadi Driver OjolKita</h2>
+            
+            <form id="formPendaftaran" class="max-w-2xl">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block text-sm font-semibold text-emerald-900 mb-2">Nama Lengkap</label>
+                        <input type="text" id="namaDriver" placeholder="Masukkan nama lengkap Anda" required
+                            class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                    </div>
+                    
+                    <!-- Nomor HP -->
+                    <div>
+                        <label class="block text-sm font-semibold text-emerald-900 mb-2">Nomor HP</label>
+                        <input type="tel" id="nomorHp" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required
+                            class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                    </div>
+                </div>
+
+                <!-- Alamat -->
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-emerald-900 mb-2">Alamat Lengkap</label>
+                    <textarea id="alamatDriver" placeholder="Jl. Contoh No. 123, Kelurahan, Kecamatan, Kota" rows="3" required
+                        class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 resize-none"></textarea>
+                </div>
+
+                <!-- Jenis Kendaraan -->
+                <div class="mb-8">
+                    <label class="block text-sm font-semibold text-emerald-900 mb-3">Jenis Kendaraan</label>
+                    <div class="flex gap-6">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="kendaraan" value="Motor" required
+                                class="w-5 h-5 text-emerald-600 cursor-pointer">
+                            <span class="ml-2 text-emerald-900">🏍️ Motor</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="kendaraan" value="Mobil" required
+                                class="w-5 h-5 text-emerald-600 cursor-pointer">
+                            <span class="ml-2 text-emerald-900">🚗 Mobil</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-bold py-3 rounded-lg hover:from-emerald-700 hover:to-emerald-600 transition shadow-lg">
+                    ✅ Daftar Sekarang
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Button (Floating) -->
+    <button id="chatbotToggle" class="ai-button-bounce fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-full shadow-2xl font-bold flex items-center justify-center hover:shadow-emerald-500/50 z-50 transition border-2 border-emerald-400">
+        <span class="text-center text-sm">
+            <div>Tanya</div>
+            <div>AI</div>
+        </span>
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatbotContainer" class="hidden fixed bottom-24 right-8 w-96 max-h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col chat-container-open">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white p-4 rounded-t-2xl flex justify-between items-center">
+            <div>
+                <h3 class="font-bold text-lg">🤖 Asisten AI OjolKita</h3>
+                <p class="text-sm text-emerald-100">Siap membantu Anda</p>
+            </div>
+            <button id="chatbotClose" class="text-xl hover:bg-emerald-700 p-2 rounded-full transition">✕</button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 bg-slate-50 space-y-3">
+            <div class="chat-bubble-enter bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-900 p-3 rounded-lg rounded-bl-none max-w-xs">
+                <p class="text-sm">👋 Halo! Saya adalah asisten AI OjolKita. Ada yang bisa saya bantu?</p>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="border-t border-slate-200 p-4 bg-white rounded-b-2xl">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="Ketik pertanyaan Anda..." 
+                    class="flex-1 px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 text-sm">
+                <button id="chatSend" class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-semibold">
+                    ➤
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form Pendaftaran Handler
+        document.getElementById('formPendaftaran').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('namaDriver').value;
+            const hp = document.getElementById('nomorHp').value;
+            const alamat = document.getElementById('alamatDriver').value;
+            const kendaraan = document.querySelector('input[name="kendaraan"]:checked').value;
+            
+            const pesan = `Halo, saya ingin mendaftar sebagai driver OjolKita\n\nData Pendaftaran:\n- Nama: ${nama}\n- No. HP: ${hp}\n- Alamat: ${alamat}\n- Kendaraan: ${kendaraan}`;
+            
+            const waLink = `https://wa.me?text=${encodeURIComponent(pesan)}`;
+            window.open(waLink, '_blank');
+            
+            this.reset();
+            alert('✅ Silakan lanjutkan di WhatsApp untuk verifikasi data Anda!');
+        });
+
+        // AI Chatbot Logic
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+
+        // Toggle Chatbot
+        chatbotToggle.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('hidden');
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotContainer.classList.add('hidden');
+        });
+
+        // AI Responses
+        const aiResponses = {
+            'halo': '👋 Halo! Selamat datang di OjolKita. Ada yang bisa saya bantu?',
+            'pesan ojek': '🚗 Untuk memesan ojek, Anda bisa klik tombol "Pesan Sekarang" di halaman utama atau hubungi driver melalui WhatsApp. Kami siap melayani 24/7!',
+            'daftar driver': '📝 Untuk mendaftar sebagai driver, silakan scroll ke bawah dan isi formulir pendaftaran. Kami membutuhkan: nama, nomor HP, alamat, dan jenis kendaraan Anda.',
+            'tarif': '💰 Tarif kami sangat kompetitif dan transparan. Cek harga real-time saat melakukan pemesanan. Kami menjamin tarif terbaik di pasaran!',
+            'keamanan': '🛡️ Keamanan Anda adalah prioritas kami. Semua driver telah melalui verifikasi ketat, asuransi lengkap, dan dilengkapi dengan fitur emergency contact.',
+            'area layanan': '📍 OjolKita melayani di seluruh kota besar. Periksa apakah area Anda termasuk dalam jangkauan kami di halaman utama.',
+            'jam operasional': '⏰ Kami melayani 24 jam setiap hari tanpa henti. Pesan kapan saja, kami siap!',
+            'bayar': '💳 Kami terima berbagai metode pembayaran: transfer bank, e-wallet, dan tunai. Pilih yang paling mudah untuk Anda.',
+            'promo': '🎉 Dapatkan diskon menarik untuk pengguna baru! Gunakan kode promo saat melakukan pemesanan pertama Anda.',
+            'default': '🤔 Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang: pesan ojek, daftar driver, tarif, keamanan, area layanan, jam operasional, pembayaran, atau promo!'
+        };
+
+        function getAIResponse(message) {
+            const lowerMessage = message.toLowerCase().trim();
+            
+            for (let key in aiResponses) {
+                if (lowerMessage.includes(key)) {
+                    return aiResponses[key];
+                }
+            }
+            
+            return aiResponses['default'];
+        }
+
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-bubble-enter p-3 rounded-lg rounded-bl-none max-w-xs text-sm ${
+                isUser 
+                    ? 'bg-emerald-600 text-white ml-auto rounded-bl-lg rounded-br-none' 
+                    : 'bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-900'
+            }`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Send Message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, true);
+            chatInput.value = '';
+
+            // Simulate AI thinking
+            setTimeout(() => {
+                const response = getAIResponse(message);
+                addMessage(response, false);
+            }, 500);
+        }
+
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 </body>
 </html>
