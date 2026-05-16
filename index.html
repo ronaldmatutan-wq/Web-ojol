@@ -44,119 +44,267 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+
+        body {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
-    <nav class="bg-white shadow-sm sticky top-0 z-40">
+<body class="text-slate-800 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-40 border-b-4 border-green-600">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <span class="text-2xl font-bold text-emerald-600">Ojol<span class="text-slate-800">Kita</span></span>
-            <div class="space-x-4">
-                <a href="#fitur" class="text-sm font-medium hover:text-emerald-600">Fitur</a>
-                <a href="https://wa.me" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition">Hubungi Admin</a>
+            <span class="text-3xl font-bold text-green-600">Ojol<span class="text-slate-800">Kita</span></span>
+            <div class="space-x-4 flex items-center">
+                <a href="#fitur" class="text-sm font-medium text-slate-700 hover:text-green-600 transition">Fitur</a>
+                <a href="https://wa.me" class="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition shadow-md">Hubungi Admin</a>
             </div>
         </div>
     </nav>
 
-    <header class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
+    <!-- Hero Section -->
+    <header class="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-            <h1 class="text-4xl font-extrabold mb-4 leading-tight">Perjalanan Aman, <br><span class="text-emerald-600">Tarif Pas di Kantong</span></h1>
-            <p class="text-slate-600 text-lg mb-8">Layanan ojek online terpercaya untuk mengantar Anda sampai tujuan dengan selamat, cepat, dan nyaman.</p>
+            <h1 class="text-5xl font-extrabold mb-6 leading-tight text-green-800">Perjalanan Aman, <br><span class="text-green-600">Tarif Pas di Kantong</span></h1>
+            <p class="text-slate-600 text-lg mb-10 leading-relaxed">Layanan ojek online terpercaya untuk mengantar Anda sampai tujuan dengan selamat, cepat, dan nyaman. Kami siap melayani 24/7 dengan driver profesional dan berpengalaman.</p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="https://wa.me?text=Halo%20Ojol,%20saya%20mau%20pesan%20ojek" class="bg-emerald-600 text-white text-center font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-emerald-700 transition">Pesan Sekarang</a>
-                <a href="#daftar" class="border-2 border-emerald-600 text-emerald-600 text-center font-semibold px-6 py-3 rounded-xl hover:bg-emerald-50 transition">Daftar Jadi Driver</a>
+                <a href="https://wa.me?text=Halo%20OjolKita,%20saya%20mau%20pesan%20ojek" class="bg-gradient-to-r from-green-600 to-green-500 text-white text-center font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-600 transition">
+                    🚗 Pesan Sekarang
+                </a>
+                <a href="#daftar" class="border-3 border-green-600 text-green-600 text-center font-bold px-8 py-4 rounded-full hover:bg-green-50 transition shadow-md">
+                    📝 Daftar Jadi Driver
+                </a>
             </div>
         </div>
-        <div class="bg-emerald-100 h-64 rounded-2xl flex items-center justify-center shadow-inner">
-            <span class="text-emerald-600 font-medium">[ Area Ilustrasi / Peta ]</span>
+        <div class="bg-gradient-to-br from-green-100 to-green-50 h-80 rounded-3xl flex items-center justify-center shadow-xl border-4 border-green-200">
+            <span class="text-green-600 font-bold text-xl">🗺️ Area Layanan OjolKita</span>
         </div>
     </header>
 
-    <!-- Formulir Pendaftaran Driver -->
-    <section id="daftar" class="max-w-6xl mx-auto px-4 py-12">
-        <div class="bg-gradient-to-b from-emerald-50 to-emerald-100 rounded-2xl p-8 border-t-4 border-emerald-600">
-            <h2 class="text-3xl font-bold text-emerald-900 mb-8">📝 Daftar Menjadi Driver OjolKita</h2>
+    <!-- Features Section -->
+    <section id="fitur" class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-center text-green-800 mb-12">Keunggulan OjolKita</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-green-600 hover:shadow-xl transition">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold text-green-700 mb-3">Cepat & Responsif</h3>
+                <p class="text-slate-600">Proses pemesanan cepat dan driver siap dalam hitungan menit.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-green-600 hover:shadow-xl transition">
+                <div class="text-4xl mb-4">💰</div>
+                <h3 class="text-xl font-bold text-green-700 mb-3">Tarif Transparan</h3>
+                <p class="text-slate-600">Harga jelas tanpa biaya tersembunyi, yang Anda lihat yang Anda bayar.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-green-600 hover:shadow-xl transition">
+                <div class="text-4xl mb-4">🛡️</div>
+                <h3 class="text-xl font-bold text-green-700 mb-3">Aman & Terpercaya</h3>
+                <p class="text-slate-600">Semua driver terverifikasi dengan asuransi dan fitur keselamatan lengkap.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Driver Registration Form Section -->
+    <section id="daftar" class="max-w-4xl mx-auto px-4 py-20">
+        <div class="bg-gradient-to-br from-green-50 via-green-25 to-emerald-50 rounded-3xl p-10 shadow-2xl border-4 border-green-600">
+            <h2 class="text-4xl font-bold text-green-900 mb-2">📝 Daftar Menjadi Driver OjolKita</h2>
+            <p class="text-green-700 text-lg mb-10">Bergabunglah dengan ribuan driver sukses kami dan dapatkan penghasilan tambahan setiap hari!</p>
             
-            <form id="formPendaftaran" class="max-w-2xl">
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <!-- Nama Lengkap -->
+            <form id="formPendaftaran" class="space-y-8">
+                <!-- Row 1: Nama Lengkap & Nomor HP -->
+                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-emerald-900 mb-2">Nama Lengkap</label>
+                        <label class="block text-lg font-bold text-green-900 mb-3">👤 Nama Lengkap</label>
                         <input type="text" id="namaDriver" placeholder="Masukkan nama lengkap Anda" required
-                            class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
                     </div>
                     
-                    <!-- Nomor HP -->
                     <div>
-                        <label class="block text-sm font-semibold text-emerald-900 mb-2">Nomor HP</label>
+                        <label class="block text-lg font-bold text-green-900 mb-3">📱 Nomor HP</label>
                         <input type="tel" id="nomorHp" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required
-                            class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
                     </div>
                 </div>
 
-                <!-- Alamat -->
-                <div class="mb-6">
-                    <label class="block text-sm font-semibold text-emerald-900 mb-2">Alamat Lengkap</label>
-                    <textarea id="alamatDriver" placeholder="Jl. Contoh No. 123, Kelurahan, Kecamatan, Kota" rows="3" required
-                        class="w-full px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 resize-none"></textarea>
+                <!-- Row 2: Email & NIK -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">📧 Email</label>
+                        <input type="email" id="emailDriver" placeholder="email@example.com" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">🆔 Nomor NIK</label>
+                        <input type="text" id="nikDriver" placeholder="Nomor Identitas Kependudukan" pattern="[0-9]{16}" maxlength="16" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                    </div>
                 </div>
 
-                <!-- Jenis Kendaraan -->
-                <div class="mb-8">
-                    <label class="block text-sm font-semibold text-emerald-900 mb-3">Jenis Kendaraan</label>
-                    <div class="flex gap-6">
-                        <label class="flex items-center cursor-pointer">
+                <!-- Row 3: Alamat Lengkap -->
+                <div>
+                    <label class="block text-lg font-bold text-green-900 mb-3">🏠 Alamat Lengkap</label>
+                    <textarea id="alamatDriver" placeholder="Jl. Contoh No. 123, Kelurahan, Kecamatan, Kota, Provinsi" rows="4" required
+                        class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition resize-none"></textarea>
+                </div>
+
+                <!-- Row 4: Jenis Kendaraan -->
+                <div>
+                    <label class="block text-lg font-bold text-green-900 mb-4">🚗 Jenis Kendaraan</label>
+                    <div class="flex gap-8 flex-wrap">
+                        <label class="flex items-center cursor-pointer p-4 border-2 border-green-300 rounded-xl hover:border-green-600 hover:bg-green-50 transition">
                             <input type="radio" name="kendaraan" value="Motor" required
-                                class="w-5 h-5 text-emerald-600 cursor-pointer">
-                            <span class="ml-2 text-emerald-900">🏍️ Motor</span>
+                                class="w-6 h-6 text-green-600 cursor-pointer accent-green-600">
+                            <span class="ml-3 text-lg text-green-900 font-semibold">🏍️ Motor</span>
                         </label>
-                        <label class="flex items-center cursor-pointer">
+                        <label class="flex items-center cursor-pointer p-4 border-2 border-green-300 rounded-xl hover:border-green-600 hover:bg-green-50 transition">
                             <input type="radio" name="kendaraan" value="Mobil" required
-                                class="w-5 h-5 text-emerald-600 cursor-pointer">
-                            <span class="ml-2 text-emerald-900">🚗 Mobil</span>
+                                class="w-6 h-6 text-green-600 cursor-pointer accent-green-600">
+                            <span class="ml-3 text-lg text-green-900 font-semibold">🚗 Mobil</span>
                         </label>
                     </div>
+                </div>
+
+                <!-- Row 5: Nomor Polisi & Tahun Kendaraan -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">🔢 Nomor Polisi</label>
+                        <input type="text" id="nomorPolisi" placeholder="AB 1234 CD" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition uppercase">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">📅 Tahun Kendaraan</label>
+                        <input type="number" id="tahunKendaraan" placeholder="2020" min="2000" max="2026" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                    </div>
+                </div>
+
+                <!-- Row 6: Pengalaman & Status -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">⏱️ Pengalaman Berkendara</label>
+                        <select id="pengalamanDriver" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                            <option value="">Pilih pengalaman Anda</option>
+                            <option value="0-1">Kurang dari 1 tahun</option>
+                            <option value="1-3">1 - 3 tahun</option>
+                            <option value="3-5">3 - 5 tahun</option>
+                            <option value="5+">Lebih dari 5 tahun</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">📌 Status Pernikahan</label>
+                        <select id="statusDriver" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                            <option value="">Pilih status</option>
+                            <option value="Lajang">Lajang</option>
+                            <option value="Menikah">Menikah</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Row 7: Rekening Bank -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">🏦 Nama Bank</label>
+                        <input type="text" id="namaBank" placeholder="BRI, BCA, Mandiri, dll" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-lg font-bold text-green-900 mb-3">💳 Nomor Rekening</label>
+                        <input type="text" id="nomorRekening" placeholder="Nomor rekening Anda" pattern="[0-9]{10,20}" required
+                            class="w-full px-5 py-3 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-200 text-base transition">
+                    </div>
+                </div>
+
+                <!-- Row 8: Persetujuan -->
+                <div class="bg-white p-6 rounded-xl border-2 border-green-200">
+                    <label class="flex items-start cursor-pointer gap-4">
+                        <input type="checkbox" id="persetujuan" required
+                            class="w-6 h-6 text-green-600 cursor-pointer accent-green-600 mt-1">
+                        <span class="text-slate-700 leading-relaxed">
+                            <span class="font-semibold text-green-900">Saya setuju dengan Syarat & Ketentuan OjolKita</span>
+                            <br>
+                            <span class="text-sm text-slate-600">Dengan mendaftar, Anda menyetujui kebijakan privasi dan perjanjian layanan kami.</span>
+                        </span>
+                    </label>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-bold py-3 rounded-lg hover:from-emerald-700 hover:to-emerald-600 transition shadow-lg">
+                <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-green-500 text-white font-bold text-lg py-4 rounded-xl hover:from-green-700 hover:to-green-600 transition shadow-lg hover:shadow-xl transform hover:scale-105">
                     ✅ Daftar Sekarang
                 </button>
+
+                <p class="text-center text-sm text-slate-600">
+                    Data Anda aman dan akan diverifikasi dalam 24 jam. Anda akan dihubungi melalui WhatsApp.
+                </p>
             </form>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">OjolKita</h3>
+                    <p class="text-green-100">Solusi transportasi online terpercaya untuk Anda dan keluarga.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Menu</h4>
+                    <ul class="space-y-2 text-green-100">
+                        <li><a href="#fitur" class="hover:text-white transition">Fitur</a></li>
+                        <li><a href="#daftar" class="hover:text-white transition">Daftar Driver</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Kontak</h4>
+                    <p class="text-green-100">📞 +62 812-3456-7890</p>
+                    <p class="text-green-100">📧 support@ojolkita.com</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 pt-8 text-center text-green-100">
+                <p>&copy; 2026 OjolKita. Semua hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
     <!-- AI Chatbot Button (Floating) -->
-    <button id="chatbotToggle" class="ai-button-bounce fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-full shadow-2xl font-bold flex items-center justify-center hover:shadow-emerald-500/50 z-50 transition border-2 border-emerald-400">
-        <span class="text-center text-sm">
-            <div>Tanya</div>
-            <div>AI</div>
+    <button id="chatbotToggle" class="ai-button-bounce fixed bottom-8 right-8 w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full shadow-2xl font-bold flex items-center justify-center hover:from-green-600 hover:to-green-700 transition z-50">
+        <span class="text-center text-sm font-bold">
+            <div class="text-2xl">🤖</div>
+            <div class="text-xs mt-1">AI</div>
         </span>
     </button>
 
     <!-- Chatbot Container -->
-    <div id="chatbotContainer" class="hidden fixed bottom-24 right-8 w-96 max-h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col chat-container-open">
+    <div id="chatbotContainer" class="hidden fixed bottom-32 right-8 w-96 max-h-96 bg-white rounded-2xl shadow-2xl z-50 flex flex-col chat-container-open border-4 border-green-600">
         <!-- Header -->
-        <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white p-4 rounded-t-2xl flex justify-between items-center">
+        <div class="bg-gradient-to-r from-green-600 to-green-500 text-white p-5 rounded-t-2xl flex justify-between items-center">
             <div>
                 <h3 class="font-bold text-lg">🤖 Asisten AI OjolKita</h3>
-                <p class="text-sm text-emerald-100">Siap membantu Anda</p>
+                <p class="text-sm text-green-100">Siap membantu Anda</p>
             </div>
-            <button id="chatbotClose" class="text-xl hover:bg-emerald-700 p-2 rounded-full transition">✕</button>
+            <button id="chatbotClose" class="text-2xl hover:bg-green-700 p-2 rounded-full transition">✕</button>
         </div>
 
         <!-- Chat Messages -->
-        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 bg-slate-50 space-y-3">
-            <div class="chat-bubble-enter bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-900 p-3 rounded-lg rounded-bl-none max-w-xs">
-                <p class="text-sm">👋 Halo! Saya adalah asisten AI OjolKita. Ada yang bisa saya bantu?</p>
+        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 bg-green-50 space-y-4">
+            <div class="chat-bubble-enter bg-gradient-to-r from-green-100 to-green-50 text-green-900 p-4 rounded-lg rounded-bl-none max-w-xs text-sm font-medium">
+                👋 Halo! Saya adalah asisten AI OjolKita. Ada yang bisa saya bantu?
             </div>
         </div>
 
         <!-- Input Area -->
-        <div class="border-t border-slate-200 p-4 bg-white rounded-b-2xl">
+        <div class="border-t border-green-200 p-4 bg-white rounded-b-2xl">
             <div class="flex gap-2">
                 <input type="text" id="chatInput" placeholder="Ketik pertanyaan Anda..." 
-                    class="flex-1 px-4 py-2 border-2 border-emerald-200 rounded-lg focus:outline-none focus:border-emerald-600 text-sm">
-                <button id="chatSend" class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-semibold">
+                    class="flex-1 px-4 py-2 border-2 border-green-300 rounded-lg focus:outline-none focus:border-green-600 text-sm">
+                <button id="chatSend" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition font-bold">
                     ➤
                 </button>
             </div>
@@ -170,16 +318,40 @@
             
             const nama = document.getElementById('namaDriver').value;
             const hp = document.getElementById('nomorHp').value;
+            const email = document.getElementById('emailDriver').value;
+            const nik = document.getElementById('nikDriver').value;
             const alamat = document.getElementById('alamatDriver').value;
             const kendaraan = document.querySelector('input[name="kendaraan"]:checked').value;
+            const nomorPolisi = document.getElementById('nomorPolisi').value;
+            const tahunKendaraan = document.getElementById('tahunKendaraan').value;
+            const pengalaman = document.getElementById('pengalamanDriver').value;
+            const status = document.getElementById('statusDriver').value;
+            const namaBank = document.getElementById('namaBank').value;
+            const nomorRekening = document.getElementById('nomorRekening').value;
             
-            const pesan = `Halo, saya ingin mendaftar sebagai driver OjolKita\n\nData Pendaftaran:\n- Nama: ${nama}\n- No. HP: ${hp}\n- Alamat: ${alamat}\n- Kendaraan: ${kendaraan}`;
+            const pesan = `Halo, saya ingin mendaftar sebagai driver OjolKita
+
+📝 DATA PENDAFTARAN:
+👤 Nama: ${nama}
+📱 No. HP: ${hp}
+📧 Email: ${email}
+🆔 NIK: ${nik}
+🏠 Alamat: ${alamat}
+🚗 Kendaraan: ${kendaraan}
+🔢 Nomor Polisi: ${nomorPolisi}
+📅 Tahun: ${tahunKendaraan}
+⏱️ Pengalaman: ${pengalaman}
+📌 Status: ${status}
+🏦 Bank: ${namaBank}
+💳 Rekening: ${nomorRekening}
+
+Terima kasih!`;
             
             const waLink = `https://wa.me?text=${encodeURIComponent(pesan)}`;
             window.open(waLink, '_blank');
             
             this.reset();
-            alert('✅ Silakan lanjutkan di WhatsApp untuk verifikasi data Anda!');
+            alert('✅ Terima kasih! Data Anda telah kami terima. Silakan lanjutkan percakapan di WhatsApp untuk verifikasi lebih lanjut.');
         });
 
         // AI Chatbot Logic
@@ -193,6 +365,9 @@
         // Toggle Chatbot
         chatbotToggle.addEventListener('click', () => {
             chatbotContainer.classList.toggle('hidden');
+            if (!chatbotContainer.classList.contains('hidden')) {
+                chatInput.focus();
+            }
         });
 
         chatbotClose.addEventListener('click', () => {
@@ -202,15 +377,18 @@
         // AI Responses
         const aiResponses = {
             'halo': '👋 Halo! Selamat datang di OjolKita. Ada yang bisa saya bantu?',
-            'pesan ojek': '🚗 Untuk memesan ojek, Anda bisa klik tombol "Pesan Sekarang" di halaman utama atau hubungi driver melalui WhatsApp. Kami siap melayani 24/7!',
-            'daftar driver': '📝 Untuk mendaftar sebagai driver, silakan scroll ke bawah dan isi formulir pendaftaran. Kami membutuhkan: nama, nomor HP, alamat, dan jenis kendaraan Anda.',
+            'pesan ojek': '🚗 Untuk memesan ojek, klik tombol "Pesan Sekarang" di halaman utama atau hubungi kami di WhatsApp. Kami siap melayani 24/7!',
+            'daftar driver': '📝 Untuk mendaftar sebagai driver, scroll ke bagian "Daftar Menjadi Driver" dan isi formulir lengkap. Kami membutuhkan data pribadi, kendaraan, dan rekening bank Anda.',
             'tarif': '💰 Tarif kami sangat kompetitif dan transparan. Cek harga real-time saat melakukan pemesanan. Kami menjamin tarif terbaik di pasaran!',
-            'keamanan': '🛡️ Keamanan Anda adalah prioritas kami. Semua driver telah melalui verifikasi ketat, asuransi lengkap, dan dilengkapi dengan fitur emergency contact.',
-            'area layanan': '📍 OjolKita melayani di seluruh kota besar. Periksa apakah area Anda termasuk dalam jangkauan kami di halaman utama.',
+            'keamanan': '🛡️ Keamanan Anda adalah prioritas kami. Semua driver terverifikasi, asuransi lengkap, dan dilengkapi fitur emergency contact.',
+            'area layanan': '📍 OjolKita melayani di seluruh kota besar. Cek apakah area Anda termasuk dalam jangkauan kami.',
             'jam operasional': '⏰ Kami melayani 24 jam setiap hari tanpa henti. Pesan kapan saja, kami siap!',
-            'bayar': '💳 Kami terima berbagai metode pembayaran: transfer bank, e-wallet, dan tunai. Pilih yang paling mudah untuk Anda.',
-            'promo': '🎉 Dapatkan diskon menarik untuk pengguna baru! Gunakan kode promo saat melakukan pemesanan pertama Anda.',
-            'default': '🤔 Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang: pesan ojek, daftar driver, tarif, keamanan, area layanan, jam operasional, pembayaran, atau promo!'
+            'bayar': '💳 Kami terima: transfer bank, e-wallet (GCash, Dana), dan tunai. Pilih yang paling mudah untuk Anda.',
+            'promo': '🎉 Dapatkan diskon menarik untuk pengguna baru! Gunakan kode promo saat pemesanan pertama Anda.',
+            'syarat': '📋 Syarat menjadi driver: minimal 18 tahun, SIM lengkap, kendaraan dalam kondisi baik, dan rekening bank aktif.',
+            'penghasilan': '💵 Penghasilan rata-rata driver OjolKita Rp 100-300 ribu per hari tergantung aktivitas dan area kerja.',
+            'kontak': '📞 Hubungi kami di WhatsApp: https://wa.me atau email: support@ojolkita.com',
+            'default': '🤔 Maaf, saya belum memahami. Coba tanyakan: pesan ojek, daftar driver, tarif, keamanan, area layanan, jam operasional, pembayaran, atau promo!'
         };
 
         function getAIResponse(message) {
@@ -227,10 +405,10 @@
 
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-bubble-enter p-3 rounded-lg rounded-bl-none max-w-xs text-sm ${
+            messageDiv.className = `chat-bubble-enter p-4 rounded-lg max-w-xs text-sm ${
                 isUser 
-                    ? 'bg-emerald-600 text-white ml-auto rounded-bl-lg rounded-br-none' 
-                    : 'bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-900'
+                    ? 'bg-green-600 text-white ml-auto rounded-bl-lg rounded-br-none font-medium' 
+                    : 'bg-gradient-to-r from-green-100 to-green-50 text-green-900 rounded-bl-none font-medium'
             }`;
             messageDiv.textContent = text;
             chatMessages.appendChild(messageDiv);
@@ -254,7 +432,9 @@
 
         chatSend.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
         });
     </script>
 </body>
