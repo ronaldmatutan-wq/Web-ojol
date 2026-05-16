@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        * { font-family: 'Poppins', sans-serif; }
+        
+        .joke-container {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .button-bounce:active {
+            transform: scale(0.95);
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(59, 130, 246, 0.1);
+            border-top: 3px solid rgb(59, 130, 246);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .joke-text {
+            line-height: 1.8;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-white mb-3">😂 Joke Generator</h1>
+            <p class="text-purple-100 text-lg">Get a random laugh every time you click!</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+            
+            <!-- Joke Display -->
+            <div id="jokeContainer" class="joke-container bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 mb-8 min-h-[200px] flex flex-col justify-center">
+                <div class="flex justify-center mb-6">
+                    <div class="loading-spinner w-12 h-12 rounded-full"></div>
+                </div>
+                <p class="text-center text-gray-500 text-lg">Loading a funny joke...</p>
+            </div>
+
+            <!-- Joke Info -->
+            <div id="jokeInfo" class="text-center mb-8 hidden">
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <span id="jokeType" class="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Type: Loading...</span>
+                    <span id="jokeCategory" class="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">Category: Loading...</span>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <button id="newJokeBtn" class="button-bounce flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 rounded-xl hover:from-blue-600 hover:to-purple-700 transition shadow-lg active:scale-95">
+                    😄 Get New Joke
+                </button>
+                <button id="copyBtn" class="button-bounce flex-1 bg-gray-200 text-gray-800 font-bold py-4 rounded-xl hover:bg-gray-300 transition shadow-lg active:scale-95">
+                    📋 Copy Joke
+                </button>
+            </div>
+
+            <!-- Share Buttons -->
+            <div class="flex gap-3 justify-center">
+                <button id="shareWhatsApp" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition shadow-lg" title="Share on WhatsApp">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.987c-1.274.573-2.411 1.369-3.288 2.39-.877 1.022-1.55 2.227-1.993 3.594C1.97 10.487 1.97 11.769 2.441 13.055c.471 1.286 1.203 2.44 2.117 3.323.914.882 2.002 1.614 3.227 2.087 1.225.473 2.556.708 3.993.708 1.437 0 2.768-.235 3.993-.708 1.225-.473 2.313-1.205 3.227-2.087.914-.883 1.646-2.037 2.117-3.323.471-1.286.471-2.569 0-3.855-.471-1.285-1.203-2.44-2.117-3.322-.914-.883-2.002-1.615-3.227-2.088-1.225-.472-2.556-.708-3.993-.708zm0 1.8c1.296 0 2.535.21 3.677.632 1.142.422 2.156 1.04 2.992 1.824.836.783 1.491 1.742 1.934 2.83.443 1.089.665 2.297.665 3.596 0 1.299-.222 2.507-.665 3.596-.443 1.088-1.098 2.047-1.934 2.83-.836.784-1.85 1.402-2.992 1.824-1.142.422-2.381.632-3.677.632-1.296 0-2.535-.21-3.677-.632-1.142-.422-2.156-1.04-2.992-1.824-.836-.783-1.491-1.742-1.934-2.83-.443-1.089-.665-2.297-.665-3.596 0-1.299.222-2.507.665-3.596.443-1.088 1.098-2.047 1.934-2.83.836-.784 1.85-1.402 2.992-1.824 1.142-.422 2.381-.632 3.677-.632z"/>
+                    </svg>
+                </button>
+                <button id="shareTwitter" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition shadow-lg" title="Share on Twitter">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9 0 11-4s1-6.6 1-9.7a7.6 7.6 0 00.75-4z"/>
+                    </svg>
+                </button>
+                <button id="shareFacebook" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition shadow-lg" title="Share on Facebook">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18 2h-3a6 6 0 00-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 012-2h3z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMsg" class="hidden mt-6 bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 rounded-lg" role="alert">
+                <strong>Oops!</strong> <span id="errorText"></span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-purple-100">
+            <p class="text-sm">Powered by <a href="https://official-joke-api.appspot.com" target="_blank" class="underline hover:text-white">Official Joke API</a></p>
+        </div>
+    </div>
+
+    <script>
+        let currentJoke = {
+            setup: '',
+            punchline: '',
+            type: '',
+            category: ''
+        };
+
+        const jokeContainer = document.getElementById('jokeContainer');
+        const jokeInfo = document.getElementById('jokeInfo');
+        const jokeTypeEl = document.getElementById('jokeType');
+        const jokeCategoryEl = document.getElementById('jokeCategory');
+        const newJokeBtn = document.getElementById('newJokeBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+
+        // Fetch joke from API
+        async function fetchJoke() {
+            try {
+                errorMsg.classList.add('hidden');
+                jokeContainer.innerHTML = `
+                    <div class="flex justify-center mb-6">
+                        <div class="loading-spinner w-12 h-12 rounded-full"></div>
+                    </div>
+                    <p class="text-center text-gray-500 text-lg">Loading a funny joke...</p>
+                `;
+                jokeInfo.classList.add('hidden');
+
+                const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch joke');
+                }
+
+                const data = await response.json();
+
+                currentJoke = {
+                    setup: data.setup,
+                    punchline: data.punchline,
+                    type: data.type || 'General',
+                    category: data.category || 'General'
+                };
+
+                displayJoke();
+            } catch (error) {
+                console.error('Error:', error);
+                errorText.textContent = error.message || 'Could not load joke. Please try again!';
+                errorMsg.classList.remove('hidden');
+                jokeContainer.innerHTML = `
+                    <p class="text-center text-red-500 text-lg">😢 Unable to load joke</p>
+                `;
+            }
+        }
+
+        // Display joke
+        function displayJoke() {
+            jokeContainer.classList.add('joke-container');
+            jokeContainer.innerHTML = `
+                <div class="joke-text">
+                    <p class="text-2xl font-bold text-blue-600 mb-6">${currentJoke.setup}</p>
+                    <p class="text-2xl font-bold text-purple-600">${currentJoke.punchline}</p>
+                </div>
+            `;
+
+            jokeTypeEl.textContent = `Type: ${currentJoke.type.charAt(0).toUpperCase() + currentJoke.type.slice(1)}`;
+            jokeCategoryEl.textContent = `Category: ${currentJoke.category.charAt(0).toUpperCase() + currentJoke.category.slice(1)}`;
+            jokeInfo.classList.remove('hidden');
+        }
+
+        // Copy joke to clipboard
+        copyBtn.addEventListener('click', () => {
+            const jokeText = `${currentJoke.setup}\n${currentJoke.punchline}`;
+            navigator.clipboard.writeText(jokeText).then(() => {
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        // Share on WhatsApp
+        document.getElementById('shareWhatsApp').addEventListener('click', () => {
+            const jokeText = `${currentJoke.setup}\n${currentJoke.punchline}`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent('😂 ' + jokeText + '\n\nGenerated by: Joke Generator')}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Share on Twitter
+        document.getElementById('shareTwitter').addEventListener('click', () => {
+            const jokeText = `${currentJoke.setup}\n${currentJoke.punchline}`;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent('😂 ' + jokeText)}`;
+            window.open(twitterUrl, '_blank');
+        });
+
+        // Share on Facebook
+        document.getElementById('shareFacebook').addEventListener('click', () => {
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(facebookUrl, '_blank');
+        });
+
+        // Get new joke button
+        newJokeBtn.addEventListener('click', fetchJoke);
+
+        // Load initial joke
+        fetchJoke();
+
+        // Allow space key to get new joke
+        document.addEventListener('keypress', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                fetchJoke();
+            }
+        });
+    </script>
+</body>
+</html>
