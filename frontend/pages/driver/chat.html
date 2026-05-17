@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat dengan Customer - Web-Ojol</title>
+    <link rel="stylesheet" href="../../css/chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <button class="back-btn">&larr;</button>
+            <div class="customer-info">
+                <img src="https://via.placeholder.com/50" alt="Customer" class="customer-avatar">
+                <div class="customer-details">
+                    <h3 class="customer-name">Ahmad (Customer)</h3>
+                    <p class="customer-status">Online</p>
+                </div>
+            </div>
+            <button class="menu-btn">⋮</button>
+        </div>
+
+        <!-- Auto-Reply Toggle -->
+        <div class="auto-reply-banner" id="autoReplyBanner">
+            <span class="auto-reply-status">🤖 Auto-Reply AKTIF</span>
+            <button class="toggle-auto-reply" id="toggleAutoReply">Matikan</button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message-group customer">
+                <div class="message">Mas, ada di mana sekarang?</div>
+                <span class="timestamp">10:30</span>
+            </div>
+            <div class="message-group driver">
+                <div class="message bot-indicator">🤖 Driver sedang dalam perjalanan, akan sampai dalam 5 menit!</div>
+                <span class="timestamp">10:31</span>
+            </div>
+            <div class="message-group customer">
+                <div class="message">Okee siap</div>
+                <span class="timestamp">10:32</span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+            <input 
+                type="text" 
+                id="messageInput" 
+                class="message-input" 
+                placeholder="Ketik pesan..."
+                autocomplete="off"
+            >
+            <button class="send-btn" id="sendBtn">➤</button>
+        </div>
+    </div>
+
+    <script src="../../js/chat.js"></script>
+</body>
+</html>

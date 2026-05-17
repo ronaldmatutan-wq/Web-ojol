@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat dengan Driver - Web-Ojol</title>
+    <link rel="stylesheet" href="../../css/chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <button class="back-btn">&larr;</button>
+            <div class="driver-info">
+                <img src="https://via.placeholder.com/50" alt="Driver" class="driver-avatar">
+                <div class="driver-details">
+                    <h3 class="driver-name">Budi (Ojek Online)</h3>
+                    <p class="driver-status">Online • 500m away</p>
+                </div>
+            </div>
+            <button class="menu-btn">⋮</button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message-group customer">
+                <div class="message">Mas, ada di mana sekarang?</div>
+                <span class="timestamp">10:30</span>
+            </div>
+            <div class="message-group driver">
+                <div class="message bot-indicator">🤖 Driver sedang dalam perjalanan, akan sampai dalam 5 menit!</div>
+                <span class="timestamp">10:31</span>
+            </div>
+            <div class="message-group customer">
+                <div class="message">Okee siap</div>
+                <span class="timestamp">10:32</span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+            <input 
+                type="text" 
+                id="messageInput" 
+                class="message-input" 
+                placeholder="Ketik pesan..."
+                autocomplete="off"
+            >
+            <button class="send-btn" id="sendBtn">➤</button>
+        </div>
+    </div>
+
+    <script src="../../js/chat.js"></script>
+</body>
+</html>
