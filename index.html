@@ -108,4 +108,75 @@
         }
     </script>
 </body>
-                </html>
+                </html><!-- GEMBOK KRESEK + OTAK KAMOJ 02 START -->
+<style>
+#kamoj-chat{position:fixed;bottom:20px;right:20px;width:340px;height:480px;background:#0f172a;border:1px solid #334155;border-radius:16px;display:none;flex-direction:column;z-index:9999;font-family:sans-serif}
+#kamoj-header{padding:12px;background:#1e293b;color:#f97316;font-weight:bold;border-radius:16px 16px 0 0}
+#kamoj-messages{flex:1;padding:12px;overflow-y:auto;color:#fff;font-size:14px}
+#kamoj-input{display:flex;padding:8px;gap:6px;border-top:1px solid #334155}
+#kamoj-input input{flex:1;padding:8px;border-radius:8px;border:none;background:#1e293b;color:#fff}
+#kamoj-input button{padding:8px 12px;background:#f97316;border:none;border-radius:8px;color:#fff;cursor:pointer}
+#kamoj-btn{position:fixed;bottom:20px;right:20px;padding:16px;background:#f97316;border-radius:50%;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.user-msg{text-align:right;margin:6px 0;color:#93c5fd}
+.kamoj-msg{margin:6px 0;color:#fcd34d}
+</style>
+
+<div id="kamoj-btn" onclick="bukaKamoj()">💬</div>
+<div id="kamoj-chat">
+  <div id="kamoj-header">KamOj 02 - Private</div>
+  <div id="kamoj-messages"></div>
+  <div id="kamoj-input">
+    <input id="pesan" placeholder="Perintah bang..." onkeypress="if(event.key==='Enter') kirim()">
+    <button onclick="kirim()">🚀</button>
+  </div>
+</div>
+
+<script>
+let pass = prompt("Password masuk KamOj:");
+if(pass!== "kamojronal123") {
+  alert("Minggir lu maling");
+  document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:40vh'>403 Forbidden</h1>";
+  throw new Error("Stop");
+}
+
+const API_KEY = "hf_xxx";
+const MODEL = "meta-llama/Meta-Llama-3-8B-Instruct";
+
+function bukaKamoj() {
+  document.getElementById('kamoj-chat').style.display = 'flex';
+  document.getElementById('kamoj-btn').style.display = 'none';
+}
+
+async function kirim() {
+  let input = document.getElementById('pesan');
+  let text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  let msgBox = document.getElementById('kamoj-messages');
+  msgBox.innerHTML += `<div class="user-msg"><b>Lo:</b> ${text}</div>`;
+  msgBox.innerHTML += `<div id="loading" class="kamoj-msg"><b>KamOj:</b> Ngetik...</div>`;
+  msgBox.scrollTop = msgBox.scrollHeight;
+
+  try {
+    const res = await fetch("https://api-inference.huggingface.co/models/" + MODEL, {
+      method: "POST",
+      headers: { "Authorization": "Bearer " + API_KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        inputs: `<|system|>Lo KamOj 02, CS paling ngiur, toxic, to the point. Tugas lo bantu owner closing.</s><|user|>${text}</s><|assistant|>`,
+        parameters: { max_new_tokens: 250, temperature: 0.7 }
+      })
+    });
+    const data = await res.json();
+    document.getElementById('loading').remove();
+    let jawab = data[0]?.generated_text?.split('<|assistant|>')[1]?.trim() || "Error bang, cek API Key";
+    msgBox.innerHTML += `<div class="kamoj-msg"><b>KamOj:</b> ${jawab}</div>`;
+  } catch(e) {
+    document.getElementById('loading').remove();
+    msgBox.innerHTML += `<div class="kamoj-msg"><b>KamOj:</b> Waduh error bang ${e}</div>`;
+  }
+  msgBox.scrollTop = msgBox.scrollHeight;
+}
+</script>
+<!-- GEMBOK KRESEK + OTAK KAMOJ 02 END -->
+</body>
+</html>
