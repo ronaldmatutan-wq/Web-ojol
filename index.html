@@ -1,156 +1,586 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KamOj Workspace - Dashboard Produktivitas & AI</title>
-    <style>
-        * {margin: 0; padding: 0; box-sizing: border-box;}
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0f172a; color: #e2e8f0; padding: 20px;
-        }
-       .header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;}
-       .logo {font-size: 24px; font-weight: 700; color: #38bdf8;}
-       .theme-toggle {background: #1e293b; border: none; color: #38bdf8; padding: 8px 12px; border-radius: 8px; cursor: pointer;}
-       .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;}
-       .card {
-            background: #1e293b; border: 1px solid #334155; 
-            border-radius: 12px; padding: 20px;
-        }
-       .card h3 {color: #38bdf8; margin-bottom: 15px; font-size: 16px;}
-        input, textarea, button {
-            width: 100%; padding: 10px; margin: 5px 0; border-radius: 8px; 
-            border: 1px solid #334155; background: #0f172a; color: #e2e8f0;
-        }
-        button {background: #0284c7; border: none; cursor: pointer; font-weight: 600;}
-        button:hover {background: #0369a1;}
-        #todoList li {list-style: none; padding: 8px; background: #0f172a; margin: 5px 0; border-radius: 6px; display: flex; justify-content: space-between;}
-        #timer {font-size: 48px; text-align: center; margin: 15px 0; color: #38bdf8; font-weight: 700;}
-       .timer-btns {display: flex; gap: 10px;}
-       .timer-btns button {flex: 1;}
-        #chatBox {height: 200px; overflow-y: auto; background: #0f172a; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 14px;}
-       .msg-user {color: #38bdf8; margin: 5px 0;}
-       .msg-ai {color: #a3e635; margin: 5px 0;}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KamOj Workspace - Dashboard Produktivitas & AI</title>
+<style>
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.logo {font-size: 24px; font-weight: 700; color: #38bdf8;}
+.theme-toggle {
+  background: #1e293b;
+  border: none;
+  color: #38bdf8;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+}
+.card h3 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+button {
+  background: #0284c7;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+button:hover {background: #0369a1;}
+#todoList li {
+  list-style: none;
+  padding: 8px;
+  background: #0f172a;
+  margin: 5px 0;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+#timer {
+  font-size: 48px;
+  text-align: center;
+  margin: 15px 0;
+  color: #38bdf8;
+  font-weight: 700;
+}
+.timer-btns {display: flex; gap: 10px;}
+.timer-btns button {flex: 1;}
+
+/* ===== CHAT AI ===== */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #38bdf8, #a3e635);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  flex-shrink: 0;
+}
+.chat-title { font-size: 15px; font-weight: 700; color: #38bdf8; }
+.chat-status {
+  font-size: 11px;
+  color: #a3e635;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.chat-dot {
+  width: 5px;
+  height: 5px;
+  background: #a3e635;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.api-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.api-row input {
+  flex: 1;
+  margin: 0;
+  font-size: 12px;
+  font-family: monospace;
+}
+.api-row button {
+  width: auto;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+#chatBox {
+  height: 240px;
+  overflow-y: auto;
+  background: #0d1526;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #1e3a5f;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+#chatBox::-webkit-scrollbar { width: 3px; }
+#chatBox::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+.chat-welcome {
+  text-align: center;
+  padding: 20px 10px;
+  color: #475569;
+  font-size: 13px;
+}
+.chat-welcome span { font-size: 28px; display: block; margin-bottom: 8px; }
+
+.bubble-wrap { display: flex; gap: 7px; }
+.bubble-wrap.user { flex-direction: row-reverse; }
+
+.b-av {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.b-av.ai { background: linear-gradient(135deg, #38bdf8, #a3e635); color: #0f172a; }
+.b-av.user { background: #1e3a5f; color: #38bdf8; font-size: 12px; }
+
+.bubble {
+  max-width: 80%;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+.bubble-wrap.ai .bubble {
+  background: #162032;
+  border: 1px solid #1e3a5f;
+  border-top-left-radius: 3px;
+  color: #e2e8f0;
+}
+.bubble-wrap.user .bubble {
+  background: #1e3a5f;
+  border: 1px solid #0369a1;
+  border-top-right-radius: 3px;
+  color: #bae6fd;
+}
+
+.typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 0;
+}
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: #334155;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%,60%,100%{transform:translateY(0)}
+  30%{transform:translateY(-5px);background:#38bdf8}
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  background: #0d1526;
+  border: 1px solid #1e3a5f;
+  border-radius: 10px;
+  padding: 8px 8px 8px 12px;
+}
+.chat-input-row:focus-within { border-color: #38bdf8; }
+
+#userInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e2e8f0;
+  font-size: 13px;
+  resize: none;
+  max-height: 80px;
+  line-height: 1.5;
+  padding: 3px 0;
+  margin: 0;
+  width: auto;
+}
+#userInput::placeholder { color: #334155; }
+
+.send-btn {
+  width: 32px;
+  height: 32px;
+  background: #0284c7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+.send-btn:hover { background: #0369a1; }
+.send-btn:disabled { background: #1e293b; cursor: default; }
+.send-btn svg { fill: white; }
+.send-btn:disabled svg { fill: #475569; }
+
+.quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.chip {
+  padding: 5px 10px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  font-size: 11px;
+  color: #64748b;
+  cursor: pointer;
+  font-family: inherit;
+}
+.chip:active { border-color: #38bdf8; color: #38bdf8; }
+/* ===== END CHAT ===== */
+</style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">KamOj Workspace</div>
-        <button class="theme-toggle" onclick="alert('Fitur tema nyusul bangg 😎')">Light/Dark</button>
+<div class="header">
+  <div class="logo">KamOj Workspace</div>
+  <button class="theme-toggle" onclick="alert('Fitur tema nyusul bangg 😎')">Light/Dark</button>
+</div>
+
+<div class="grid">
+  <!-- Manajer Tugas -->
+  <div class="card">
+    <h3>Manajer Tugas</h3>
+    <input type="text" id="todoInput" placeholder="Nama tugas baru...">
+    <button onclick="addTodo()">Tambah Tugas</button>
+    <ul id="todoList"></ul>
+  </div>
+
+  <!-- Pengatur Waktu Fokus -->
+  <div class="card">
+    <h3>Pengatur Waktu Fokus</h3>
+    <div id="timer">25:00</div>
+    <div class="timer-btns">
+      <button onclick="startTimer()">Mulai</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <!-- KamOj G2 AI Chat -->
+  <div class="card">
+    <div class="chat-header">
+      <div class="chat-avatar">K</div>
+      <div>
+        <div class="chat-title">KamOj G2 AI</div>
+        <div class="chat-status"><span class="chat-dot"></span>Siap membantu</div>
+      </div>
     </div>
 
-    <div class="grid">
-        <!-- Manajer Tugas -->
-        <div class="card">
-            <h3>Manajer Tugas</h3>
-            <input type="text" id="todoInput" placeholder="Nama tugas baru...">
-            <button onclick="addTodo()">Tambah Tugas</button>
-            <ul id="todoList"></ul>
-        </div>
-
-        <!-- Pengatur Waktu Fokus -->
-        <div class="card">
-            <h3>Pengatur Waktu Fokus</h3>
-            <div id="timer">25:00</div>
-            <div class="timer-btns">
-                <button onclick="startTimer()">Mulai</button>
-                <button onclick="resetTimer()">Reset</button>
-            </div>
-        </div>
-
-        <!-- Catatan Cepat + AI -->
-        <div class="card">
-            <h3>Catatan Cepat + KamOj G2 AI</h3>
-            <input type="password" id="apiKey" placeholder="Tempel API Key Gemini AIza...">
-            <div id="chatBox"></div>
-            <textarea id="userInput" rows="2" placeholder="Tanya KamOj G2..."></textarea>
-            <button onclick="askKamoj()">Tanya KamOj</button>
-        </div>
-
-        <!-- Bookmark AI -->
-        <div class="card">
-            <h3>Bookmark AI & Alur</h3>
-            <input type="text" id="linkInput" placeholder="Tempel link HF Space / API...">
-            <button onclick="addLink()">Simpan Link</button>
-            <ul id="linkList"></ul>
-        </div>
+    <div class="api-row">
+      <input type="password" id="apiKey" placeholder="API Key Gemini (AIza...)">
+      <button onclick="saveKey()">Simpan</button>
     </div>
+
+    <div class="quick-chips">
+      <button class="chip" onclick="quickAsk('Bantu saya produktif hari ini')">💡 Tips produktif</button>
+      <button class="chip" onclick="quickAsk('Ide bisnis online modal kecil')">💼 Ide bisnis</button>
+      <button class="chip" onclick="quickAsk('Motivasi dong!')">🔥 Motivasi</button>
+    </div>
+
+    <div id="chatBox">
+      <div class="chat-welcome">
+        <span>🤖</span>
+        Halo! Aku KamOj G2.<br>Tanya apa aja, aku siap bantu!
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <textarea id="userInput" rows="1" placeholder="Ketik pesanmu..."
+        oninput="resizeInput(this)"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askKamoj()}"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="askKamoj()">
+        <svg width="14" height="14" viewBox="0 0 24 24">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bookmark AI -->
+  <div class="card">
+    <h3>Bookmark AI & Alur</h3>
+    <input type="text" id="linkInput" placeholder="Tempel link HF Space / API...">
+    <button onclick="addLink()">Simpan Link</button>
+    <ul id="linkList"></ul>
+  </div>
+</div>
 
 <script>
-    // === TODO ===
-    let todos = JSON.parse(localStorage.getItem('todos')) || [];
-    function renderTodos() {
-        document.getElementById('todoList').innerHTML = todos.map((t,i) => 
-            `<li>${t} <span onclick="delTodo(${i})" style="cursor:pointer;color:#f87171">✕</span></li>`
-        ).join('');
-    }
-    function addTodo() {
-        const val = document.getElementById('todoInput').value;
-        if(val) { todos.push(val); localStorage.setItem('todos', JSON.stringify(todos)); renderTodos(); document.getElementById('todoInput').value = ''; }
-    }
-    function delTodo(i) { todos.splice(i,1); localStorage.setItem('todos', JSON.stringify(todos)); renderTodos(); }
+// === TODO ===
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+function renderTodos() {
+  document.getElementById('todoList').innerHTML = todos.map((t, i) =>
+    `<li>${t} <span onclick="delTodo(${i})" style="cursor:pointer;color:#f87171">✕</span></li>`
+  ).join('');
+}
+
+function addTodo() {
+  const val = document.getElementById('todoInput').value.trim();
+  if (val) {
+    todos.push(val);
+    localStorage.setItem('todos', JSON.stringify(todos));
     renderTodos();
+    document.getElementById('todoInput').value = '';
+  }
+}
 
-    // === POMODORO ===
-    let time = 1500, timerRun = false, interval;
-    function updateTimer() {
-        const m = Math.floor(time/60), s = time%60;
-        document.getElementById('timer').textContent = `${m}:${s<10?'0':''}${s}`;
-    }
-    function startTimer() {
-        if(timerRun) return; timerRun = true;
-        interval = setInterval(() => {
-            if(time > 0) { time--; updateTimer(); } 
-            else { clearInterval(interval); timerRun = false; alert('Waktu Fokus Selesai Bangg! 🔥'); }
-        }, 1000);
-    }
-    function resetTimer() { clearInterval(interval); timerRun = false; time = 1500; updateTimer(); }
+function delTodo(i) {
+  todos.splice(i, 1);
+  localStorage.setItem('todos', JSON.stringify(todos));
+  renderTodos();
+}
+renderTodos();
 
-    // === BOOKMARK ===
-    let links = JSON.parse(localStorage.getItem('links')) || [];
-    function renderLinks() {
-        document.getElementById('linkList').innerHTML = links.map((l,i) => 
-            `<li><a href="${l}" target="_blank" style="color:#38bdf8">${l}</a> <span onclick="delLink(${i})" style="cursor:pointer;color:#f87171">✕</span></li>`
-        ).join('');
+// === POMODORO ===
+let time = 1500, timerRun = false, interval;
+
+function updateTimer() {
+  const m = Math.floor(time / 60), s = time % 60;
+  document.getElementById('timer').textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function startTimer() {
+  if (timerRun) return;
+  timerRun = true;
+  interval = setInterval(() => {
+    if (time > 0) {
+      time--;
+      updateTimer();
+    } else {
+      clearInterval(interval);
+      timerRun = false;
+      alert('Waktu Fokus Selesai Bangg! 🔥');
     }
-    function addLink() {
-        const val = document.getElementById('linkInput').value;
-        if(val) { links.push(val); localStorage.setItem('links', JSON.stringify(links)); renderLinks(); document.getElementById('linkInput').value = ''; }
-    }
-    function delLink(i) { links.splice(i,1); localStorage.setItem('links', JSON.stringify(links)); renderLinks(); }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(interval);
+  timerRun = false;
+  time = 1500;
+  updateTimer();
+}
+updateTimer();
+
+// === BOOKMARK ===
+let links = JSON.parse(localStorage.getItem('links')) || [];
+
+function renderLinks() {
+  document.getElementById('linkList').innerHTML = links.map((l, i) =>
+    `<li><a href="${l}" target="_blank" style="color:#38bdf8">${l}</a> <span onclick="delLink(${i})" style="cursor:pointer;color:#f87171">✕</span></li>`
+  ).join('');
+}
+
+function addLink() {
+  const val = document.getElementById('linkInput').value.trim();
+  if (val) {
+    links.push(val);
+    localStorage.setItem('links', JSON.stringify(links));
     renderLinks();
+    document.getElementById('linkInput').value = '';
+  }
+}
 
-    // === KAMOJ G2 AI GEMINI ===
-    async function askKamoj() {
-        const apiKey = document.getElementById('apiKey').value;
-        const input = document.getElementById('userInput').value;
-        const chatBox = document.getElementById('chatBox');
-        if(!apiKey) return alert('Isi API Key Gemini dulu bangg!');
-        if(!input) return;
-        
-        chatBox.innerHTML += `<div class="msg-user">Lo: ${input}</div>`;
-        document.getElementById('userInput').value = '';
-        chatBox.innerHTML += `<div class="msg-ai">KamOj G2: Mikir bentar bangg...</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
+function delLink(i) {
+  links.splice(i, 1);
+  localStorage.setItem('links', JSON.stringify(links));
+  renderLinks();
+}
+renderLinks();
 
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({contents: [{parts: [{text: input}]}]})
-            });
-            const data = await res.json();
-            const reply = data.candidates[0].content.parts[0].text;
-            chatBox.lastChild.remove();
-            chatBox.innerHTML += `<div class="msg-ai">KamOj G2: ${reply}</div>`;
-        } catch(e) {
-            chatBox.lastChild.remove();
-            chatBox.innerHTML += `<div class="msg-ai">KamOj G2: Waduh eror bangg 😭 Cek API Key atau koneksi</div>`;
-        }
-        chatBox.scrollTop = chatBox.scrollHeight;
+// === CHAT AI ===
+let chatHistory = [];
+let isBusy = false;
+
+const savedKey = localStorage.getItem('gemini_key');
+if (savedKey) document.getElementById('apiKey').value = savedKey;
+
+function saveKey() {
+  const k = document.getElementById('apiKey').value.trim();
+  if (k) {
+    localStorage.setItem('gemini_key', k);
+    showToast('API Key tersimpan!');
+  }
+}
+
+function resizeInput(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 80) + 'px';
+}
+
+function addBubble(role, text) {
+  const box = document.getElementById('chatBox');
+  const welcome = box.querySelector('.chat-welcome');
+  if (welcome) welcome.remove();
+
+  const wrap = document.createElement('div');
+  wrap.className = 'bubble-wrap ' + role;
+
+  const av = document.createElement('div');
+  av.className = 'b-av ' + role;
+  av.textContent = role === 'ai' ? 'K' : '👤';
+
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.textContent = text;
+
+  wrap.appendChild(av);
+  wrap.appendChild(b);
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+  return b;
+}
+
+function showTyping() {
+  const box = document.getElementById('chatBox');
+  const welcome = box.querySelector('.chat-welcome');
+  if (welcome) welcome.remove();
+
+  const wrap = document.createElement('div');
+  wrap.className = 'bubble-wrap ai';
+  wrap.id = 'typing';
+
+  const av = document.createElement('div');
+  av.className = 'b-av ai';
+  av.textContent = 'K';
+
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+
+  wrap.appendChild(av);
+  wrap.appendChild(b);
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0284c7;color:white;padding:8px 16px;border-radius:20px;font-size:12px;z-index:999;';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+
+function quickAsk(text) {
+  document.getElementById('userInput').value = text;
+  askKamoj();
+}
+
+async function askKamoj() {
+  if (isBusy) return;
+
+  const apiKey = document.getElementById('apiKey').value.trim() || localStorage.getItem('gemini_key');
+  const input = document.getElementById('userInput').value.trim();
+
+  if (!apiKey) return showToast('Isi API Key Gemini dulu bangg!');
+  if (!input) return;
+
+  document.getElementById('userInput').value = '';
+  document.getElementById('userInput').style.height = 'auto';
+  document.getElementById('sendBtn').disabled = true;
+  isBusy = true;
+
+  addBubble('user', input);
+  chatHistory.push({ role: 'user', parts: [{ text: input }] });
+
+  showTyping();
+
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: {
+            parts: [{
+              text: 'Kamu adalah KamOj G2, asisten AI cerdas dan ramah buatan Ronald. Jawab dengan bahasa Indonesia yang natural dan santai. Singkat tapi informatif. Sesekali pakai emoji yang relevan.'
+            }]
+          },
+          contents: chatHistory.slice(-10)
+        })
+      }
+    );
+
+    const data = await res.json();
+    removeTyping();
+
+    if (data.error) {
+      addBubble('ai', '⚠️ ' + (data.error.message || 'Ada kesalahan, cek API Key-mu ya.'));
+    } else {
+      const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '⚠️ Tidak ada jawaban dari AI.';
+      chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+      addBubble('ai', reply);
     }
+  } catch (e) {
+    removeTyping();
+    addBubble('ai', '⚠️ Gagal konek. Cek internet & API Key ya bangg 😅');
+  }
+
+  isBusy = false;
+  document.getElementById('sendBtn').disabled = false;
+  document.getElementById('userInput').focus();
+}
 </script>
 </body>
-</html>
+    </html>
