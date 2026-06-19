@@ -1,13 +1,14 @@
    {
-     "name": "Web Ojol KamOj",
-     "short_name": "WebOjol",
-     "start_url": "/",
-     "display": "standalone",
-     "background_color": "#ffffff",
-     "theme_color": "#ff5722",
-     "icons": [{
-       "src": "icon-512.png",
-       "sizes": "512x512",
-       "type": "image/png"
-     }]
+  "name": "Web Ojol KamOj",
+  "short_name": "WebOjol",
+  "description": "Aplikasi ojek online lengkap dengan fitur pemesanan dan peta",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF5722",
+  "icons": [{
+    "src": "icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
    }
